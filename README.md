@@ -5,9 +5,11 @@ Cómo se usa?
 
 Necesias tener phyton3, pip, selenium y el chromedriver (si querés usar navegador chrome) o geckodriver (si querés usar firefox)
 
-# sudo apt install python3-pip
-# sudo apt-get install chromium-chromedriver
-# pip install selenium
+<code>
+  sudo apt install python3-pip ;  
+  sudo apt-get install chromium-chromedriver ;
+  pip install selenium
+</code>
 
 Se completa en el código los datos necesarios:
 
@@ -25,4 +27,6 @@ _user_password_ es tu password en la página
 
 Y se ejecuta:
 
-# phyton3 test.py
+<code>
+  phyton3 test.py
+</code>
