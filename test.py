@@ -5,9 +5,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 location = "Devoto"
-day = "mar"
-class_name = "MegaCross"
-timing = "19:00"
+day = "jue"
+class_name = "Zumba"
+timing = "20:00"
 user_mail = "usuario_cansado@megatlon.com"
 user_password =  "password"
 
@@ -15,7 +15,7 @@ user_password =  "password"
 driver = webdriver.Chrome()
 #driver = webdriver.Firefox()
 
-driver.maximize_window()
+driver.set_window_size (1920, 1080)
 driver.get('https://megatlon.com/#/login')
 
 time.sleep(2)
@@ -67,7 +67,6 @@ driver.find_element_by_xpath('/html/body/div[8]/div/div/div/div/div[3]/input').c
 wait.until(EC.visibility_of_element_located(
     (By.XPATH, '//button[text()="Reservar"]'))).click()
 
-time.sleep(2)
+time.sleep(5)
 
-#cierro
 driver.close()
