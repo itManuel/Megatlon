@@ -2,15 +2,46 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
+import time, sys, getopt
 
+from datetime import datetime
+
+
+# datos por defecto, se sobreescriben con parámetros de ser necesario
 location = "Devoto"
-day = "jue"
-class_name = "Zumba"
-timing = "20:00"
-user_mail = "usuario_cansado@megatlon.com"
+day = "lun"
+class_name = "MegaCross"
+timing = "19:00"
+user_mail = "usuariocansado@megatlon.com"
+user_password =  "supersecurepassword"
 
-user_password =  "password"
+arg = sys.argv[1:]
+try:
+    opts, args = getopt.getopt(arg,"h:u:p:t:c:d:",["help","user_mail","user_password","timming","class_name","day"])
+except getopt.GetoptError:
+    print('test.py -u <user> -p <passwd> -t <hora> -c <class name> -d <dia>')
+    sys.exit(2)
+for opt, arg in opts:
+    if opt == '-h':
+        print('test.py -u <user> -p <passwd> -t <hora> -c <class name> -d <dia>')
+        sys.exit()
+    elif opt in ("-u"):
+        user_mail = arg
+    elif opt in ("-p"):
+        user_password = arg
+    elif opt in ("-t"):
+        timming = arg
+    elif opt in ("-c"):
+        class_name = arg
+    elif opt in ("-d"):
+        day = arg
+
+#print(sys.argv[1:])
+print('user=',user_mail)
+print('pass=',user_password)
+print('timming=',timming)
+print('class_name=',class_name)
+print('day=',day)
 
 # aquí es según el gusto de c/u:
 driver = webdriver.Chrome()
@@ -56,7 +87,9 @@ driver.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div[2]/div/div/
 wait.until(EC.visibility_of_element_located(
     (By.XPATH, '//*[contains(text(),"' + class_name + '")]'))).click()
 
-time.sleep(2)
+
+time.sleep(469)
+#time.sleep(2)
 
 # Busco la clase que me interesa asistir
 WebDriverWait(driver, 15).until(EC.visibility_of_element_located(
@@ -66,10 +99,16 @@ WebDriverWait(driver, 15).until(EC.visibility_of_element_located(
 # clickeo el checkbox de 'no tengo covid' (Gracias Diego González por el xpath!!)
 driver.find_element(By.XPATH, '/html/body/div[8]/div/div/div/div/div[3]/input').click()
 
+now = datetime.now()
+
+current_time = now.strftime("%H:%M:%S")
+
 # reservo
 wait.until(EC.visibility_of_element_located(
     (By.XPATH, '//button[text()="Reservar"]'))).click()
 
+#print(time.now())
+print(current_time,': reservado ',class_name,' para el día ',day,' a las ',timing)
 time.sleep(5)
 
 driver.close()
