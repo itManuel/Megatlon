@@ -17,7 +17,7 @@ user_password =  "supersecurepassword"
 
 arg = sys.argv[1:]
 try:
-    opts, args = getopt.getopt(arg,"h:u:p:t:c:d:",["help","user_mail","user_password","timming","class_name","day"])
+    opts, args = getopt.getopt(arg,"h:u:p:t:c:d:",["help","user_mail","user_password","timing","class_name","day"])
 except getopt.GetoptError:
     print('test.py -u <user> -p <passwd> -t <hora> -c <class name> -d <dia>')
     sys.exit(2)
@@ -30,7 +30,7 @@ for opt, arg in opts:
     elif opt in ("-p"):
         user_password = arg
     elif opt in ("-t"):
-        timming = arg
+        timing = arg
     elif opt in ("-c"):
         class_name = arg
     elif opt in ("-d"):
@@ -39,7 +39,7 @@ for opt, arg in opts:
 #print(sys.argv[1:])
 print('user=',user_mail)
 print('pass=',user_password)
-print('timming=',timming)
+print('timing=',timing)
 print('class_name=',class_name)
 print('day=',day)
 
@@ -101,7 +101,7 @@ driver.find_element(By.XPATH, '/html/body/div[8]/div/div/div/div/div[3]/input').
 
 now = datetime.now()
 
-current_time = now.strftime("%H:%M:%S")
+current_time = now.strftime("%Y-%m-%d %H:%M:%S")
 
 # reservo
 wait.until(EC.visibility_of_element_located(
