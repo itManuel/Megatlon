@@ -75,29 +75,31 @@ time.sleep(2)
 # Selecciono la sede a la que quiero ir
 wait = WebDriverWait(driver, 15)
 
-driver.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div[1]/div/div/div[2]/div').click()
+wait.until(EC.visibility_of_element_located(
+    (By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div[1]/div/div/div[2]/div'))).click()
+
 wait.until(EC.visibility_of_element_located(
     (By.XPATH, '//*[contains(text(),"' + location + '")]'))).click()
 
-time.sleep(2)
-
 # Selecciono la clase que quiero reservar
-driver.find_element(By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div[2]/div/div/div[2]/div').click()
+wait.until(EC.visibility_of_element_located(
+    (By.XPATH, '//*[@id="root"]/div/div[2]/div[1]/div[2]/div/div/div[2]/div'))).click()
 
 wait.until(EC.visibility_of_element_located(
     (By.XPATH, '//*[contains(text(),"' + class_name + '")]'))).click()
 
 
-time.sleep(469)
+time.sleep(460)
 #time.sleep(2)
 
 # Busco la clase que me interesa asistir
-WebDriverWait(driver, 15).until(EC.visibility_of_element_located(
+wait.until(EC.visibility_of_element_located(
     (By.XPATH,
      '//div[contains(h6[1],"' + day + '") and contains(h5,"' + class_name + '") and contains(h6[2],"' + timing + '")]'))).click()
 
 # clickeo el checkbox de 'no tengo covid' (Gracias Diego González por el xpath!!)
-driver.find_element(By.XPATH, '/html/body/div[8]/div/div/div/div/div[3]/input').click()
+wait.until(EC.visibility_of_element_located(
+    (By.XPATH, '/html/body/div[8]/div/div/div/div/div[3]/input'))).click()
 
 now = datetime.now()
 
